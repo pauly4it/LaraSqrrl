@@ -1,6 +1,4 @@
-<?php
-
-namespace App;
+<?php namespace App\LaraSqrrl\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -36,4 +34,5 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
 }
