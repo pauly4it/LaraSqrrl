@@ -14,6 +14,10 @@ class EventServiceProvider extends ServiceProvider {
         'App\LaraSqrrl\Texts\Events\EnthusiastPictureReceived' => [
             'App\LaraSqrrl\Texts\Handlers\SendPictureToExperts',
         ],
+
+        'App\LaraSqrrl\Texts\Events\ExpertAnalysisReceived' => [
+            'App\LaraSqrrl\Texts\Handlers\SendExpertAnalysisToEnthusiast',
+            'App\LaraSqrrl\Texts\Handlers\SendNutsToExpert',
         ],
     ];
 
