@@ -13,11 +13,11 @@ class User extends Model
     protected $table = 'users';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'phone', 'role', 'nuts'];
 
     /**
      * The attributes excluded from the model's JSON form.
