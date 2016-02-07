@@ -3,6 +3,7 @@
 use App\LaraSqrrl\Texts\Events\EnthusiastPictureReceived;
 use App\LaraSqrrl\Twilio\Services\TwilioServiceProvider;
 use App\LaraSqrrl\Users\User;
+use Storage;
 
 class SendPictureToExperts {
 
@@ -43,13 +44,18 @@ class SendPictureToExperts {
         // build message
         $message = "#" . $enthusiast->id . " Is this a squirrel? Respond: \"" . $enthusiast->id . " Yes\" or \"" . $enthusiast->id . " No\"";
 
+        $mediaTypeArray = explode("/", $incomingText->getMediaType(0));
+        $mediaType = $mediaTypeArray[count($mediaTypeArray) - 1];
+        $filename = $enthusiast->id . "_" . time() . $mediaType;
+        Storage::put($filename, file_get_contents($incomingText->getMediaUrl(0)));
+
         // send text to experts with the picture
         foreach ($experts as $expert)
         {
             $this->twilio->sendMMS(
                 $expert->phone,
                 $message,
-                $incomingText->getMediaUrl(0)
+                env('APP_URL') . "/images/submitted/" . $filename
             );
         }
     }
