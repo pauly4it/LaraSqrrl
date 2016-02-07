@@ -30,7 +30,7 @@ class SendNutsToExpert {
         $enthusiast = $event->getEnthusiastUser();
 
         // set up message and acorns picture URL
-        $message = "Your expert analysis if off to " . $enthusiast->name . "! You just earned 2 nuts!";
+        $message = "Your expert analysis is off to " . $enthusiast->name . "! You just earned 2 nuts!";
         $acornsURL = env('APP_URL') . "/images/acorns.png";
 
         // give the expert 2 nuts for the analysis

@@ -32,11 +32,11 @@ class SendExpertAnalysisToEnthusiast {
         // set message
         if ($event->wasSquirrel())
         {
-            $message = $expert->name . " says that was a squirrel in your picture! You just made " . $expert->name . " nuts!";
+            $message = $expert->name . " says that was a squirrel in your photo! You just made " . $expert->name . " nuts!";
         }
         else
         {
-            $message = $expert->name . " says it wasn't a squirrel in your picture. Better luck next time.";
+            $message = $expert->name . " says it wasn't a squirrel in your photo. Better luck next time.";
         }
 
         // send SMS to enthusiast

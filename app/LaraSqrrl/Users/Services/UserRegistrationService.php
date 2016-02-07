@@ -76,11 +76,14 @@ class UserRegistrationService {
                     switch ($role)
                     {
                         case 'expert':
-                            return "You're all set as a squirrel expert! Whenever an enthusiast sends in a picture, you'll receive the picture. At that point, reply with the case number and \"squirrel\" or \"not a squirrel\".";
+                            return "You're all set as a squirrel expert! Whenever an enthusiast sends in a photo, you'll receive that photo to analyze.";
                             break;
 
                         case 'enthusiast':
-                            return "You're all set as a squirrel enthusiast! Whenever you're not sure if you're looking at a squirrel, just text us a picture. Our squirrel experts will help you out!";
+                            return "You're all set as a squirrel enthusiast! Whenever you're not sure if you're looking at a squirrel, just text us a photo. Our squirrel experts will help you out!";
+                            break;
+                        default:
+                            return "We didn't understand that. Reply with either \"Expert\" or \"Enthusiast\".";
                             break;
                     }
                 }
