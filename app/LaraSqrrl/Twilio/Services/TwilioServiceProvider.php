@@ -31,7 +31,7 @@ class TwilioServiceProvider {
     public function sendSMS($userPhoneNumber, $message)
     {
         return $this->client->account->messages->sendMessage(
-            $this->phoneNumber,
+            '+' . $this->phoneNumber,
             $userPhoneNumber,
             $message
         );
@@ -48,10 +48,10 @@ class TwilioServiceProvider {
     public function sendMMS($userPhoneNumber, $message, $imageURL)
     {
         return $this->client->account->messages->sendMessage(
-            $this->phoneNumber,
+            '+' . $this->phoneNumber,
             $userPhoneNumber,
             $message,
-            $imageURL
+            [$imageURL]
         );
     }
 
