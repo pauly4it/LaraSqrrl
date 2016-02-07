@@ -3,10 +3,11 @@
 use App\LaraSqrrl\Texts\Events\EnthusiastPictureReceived;
 use App\LaraSqrrl\Twilio\Services\TwilioServiceProvider;
 use App\LaraSqrrl\Users\User;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Storage;
 use Carbon\Carbon;
 
-class SendPictureToExperts {
+class SendPictureToExperts implements ShouldQueue {
 
     /**
      * @var User

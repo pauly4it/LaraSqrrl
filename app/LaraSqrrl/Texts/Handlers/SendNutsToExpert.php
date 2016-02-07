@@ -2,8 +2,9 @@
 
 use App\LaraSqrrl\Texts\Events\ExpertAnalysisReceived;
 use App\LaraSqrrl\Twilio\Services\TwilioServiceProvider;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendNutsToExpert {
+class SendNutsToExpert implements ShouldQueue {
 
     /**
      * @var TwilioServiceProvider
