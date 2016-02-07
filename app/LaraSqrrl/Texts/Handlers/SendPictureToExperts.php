@@ -4,6 +4,7 @@ use App\LaraSqrrl\Texts\Events\EnthusiastPictureReceived;
 use App\LaraSqrrl\Twilio\Services\TwilioServiceProvider;
 use App\LaraSqrrl\Users\User;
 use Storage;
+use Carbon\Carbon;
 
 class SendPictureToExperts {
 
@@ -46,8 +47,11 @@ class SendPictureToExperts {
 
         $mediaTypeArray = explode("/", $incomingText->getMediaType(0));
         $mediaType = $mediaTypeArray[count($mediaTypeArray) - 1];
-        $filename = $enthusiast->id . "_" . time() . $mediaType;
-        Storage::put($filename, file_get_contents($incomingText->getMediaUrl(0)));
+        $date = Carbon::now();
+        $path = '/user_submissions/' . $enthusiast->id . "/" . ($date->toDateString()) . '/' . ($date->format('His')) . $mediaType;
+        $s3 = Storage::disk('s3');
+        $s3->put($path, file_get_contents($incomingText->getMediaUrl(0)));
+        $photo_url = 'https://s3.amazonaws.com/' . config('filesystems.disks.s3.bucket') . $path;
 
         // send text to experts with the picture
         foreach ($experts as $expert)
@@ -55,7 +59,7 @@ class SendPictureToExperts {
             $this->twilio->sendMMS(
                 $expert->phone,
                 $message,
-                env('APP_URL') . "/images/submitted/" . $filename
+                $photo_url
             );
         }
     }
