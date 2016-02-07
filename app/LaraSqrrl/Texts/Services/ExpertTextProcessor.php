@@ -58,7 +58,7 @@ class ExpertTextProcessor {
         $text = explode(' ', $incomingText->getBody());
 
         // check if first string is an integer and an enthusiast user id
-        if (!is_int($text[0]))
+        if (!is_numeric($text[0]))
         {
             // not an integer
             return [
@@ -76,7 +76,7 @@ class ExpertTextProcessor {
         }
 
         // validate second part of text
-        if (strtolower($text[1]) !== 'yes' OR strtolower($text[1]) !== 'no')
+        if (strtolower($text[1]) !== 'yes' AND strtolower($text[1]) !== 'no')
         {
             return [
                 'valid' => FALSE,
@@ -87,7 +87,7 @@ class ExpertTextProcessor {
         return [
             'valid' => TRUE,
             'user' => $enthusiast,
-            'answer' => strtolower([$text[1]])
+            'answer' => strtolower($text[1])
         ];
     }
 
