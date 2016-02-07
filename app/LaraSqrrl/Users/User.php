@@ -51,7 +51,7 @@ class User extends Model
         {
             return 1;
         }
-        elseif (is_null($this->role()))
+        elseif (is_null($this->role))
         {
             return 2;
         }

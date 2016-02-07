@@ -20,7 +20,7 @@ class TwilioController extends Controller {
      */
     public function __construct(TwimlFormatter $twimlFormatter)
     {
-        $this->twilmlFormatter = $twimlFormatter;
+        $this->twimlFormatter = $twimlFormatter;
     }
 
     /**
