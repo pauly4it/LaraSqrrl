@@ -19,6 +19,13 @@ class User extends Model
      */
     protected $fillable = ['name', 'phone', 'role', 'nuts'];
 
+    /*
+     * Relationships
+     */
+    public function submission()
+    {
+        return $this->hasMany('App\LaraSqrrl\Submissions\Submission');
+    }
     /**
      * Find a user by their phone number.
      *
