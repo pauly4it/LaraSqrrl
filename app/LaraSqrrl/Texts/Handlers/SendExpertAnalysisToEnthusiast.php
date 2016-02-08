@@ -1,5 +1,6 @@
 <?php namespace App\LaraSqrrl\Texts\Handlers;
 
+use App\LaraSqrrl\Responses\Services\ResponseCreationService;
 use App\LaraSqrrl\Texts\Events\ExpertAnalysisReceived;
 use App\LaraSqrrl\Twilio\Services\TwilioServiceProvider;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,13 +11,20 @@ class SendExpertAnalysisToEnthusiast implements ShouldQueue {
      * @var TwilioServiceProvider
      */
     private $twilio;
+    /**
+     * @var ResponseCreationService
+     */
+    private $responseCreationService;
 
     /**
      * @param TwilioServiceProvider $twilio
+     * @param ResponseCreationService $responseCreationService
      */
-    public function __construct(TwilioServiceProvider $twilio)
+    public function __construct(TwilioServiceProvider $twilio,
+                                ResponseCreationService $responseCreationService)
     {
         $this->twilio = $twilio;
+        $this->responseCreationService = $responseCreationService;
     }
 
     /**
@@ -28,7 +36,10 @@ class SendExpertAnalysisToEnthusiast implements ShouldQueue {
     {
         // grab the expert and enthusiast user info
         $expert = $event->getExpertUser();
-        $enthusiast = $event->getEnthusiastUser();
+        $submission = $event->getSubmission();
+
+        // save response
+        $this->responseCreationService->saveResponse($submission, $expert, $event->wasSquirrel());
 
         // set message
         if ($event->wasSquirrel())
@@ -42,7 +53,7 @@ class SendExpertAnalysisToEnthusiast implements ShouldQueue {
 
         // send SMS to enthusiast
         $this->twilio->sendSMS(
-            $enthusiast->phone,
+            $submission->user->phone,
             $message
         );
     }
