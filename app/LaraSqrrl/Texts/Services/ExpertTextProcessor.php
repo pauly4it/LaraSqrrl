@@ -1,5 +1,6 @@
 <?php namespace App\LaraSqrrl\Texts\Services;
 
+use App\LaraSqrrl\Submissions\Submission;
 use App\LaraSqrrl\Texts\Entities\IncomingTextObject;
 use App\LaraSqrrl\Texts\Events\ExpertAnalysisReceived;
 use App\LaraSqrrl\Users\User;
@@ -8,27 +9,27 @@ use Validator;
 class ExpertTextProcessor {
 
     /**
-     * @var User
+     * @var Submission
      */
-    private $userModel;
+    private $submissionModel;
 
     /**
-     * @param User $userModel
+     * @param Submission $submissionModel
      */
-    public function __construct(User $userModel)
+    public function __construct(Submission $submissionModel)
     {
-        $this->userModel = $userModel;
+        $this->submissionModel = $submissionModel;
     }
 
     /**
      * Process an expert's incoming text.
      *
      * @param IncomingTextObject $incomingText
-     * @param User $user
+     * @param User $expert
      * @return null
      */
     public function process(IncomingTextObject $incomingText,
-                            User $user)
+                            User $expert)
     {
         // validate if expert's text has required information
         $validation = $this->validateText($incomingText);
@@ -40,7 +41,7 @@ class ExpertTextProcessor {
         }
 
         // expert analysis received, fire event
-        event(new ExpertAnalysisReceived($validation['user'], $user, $validation['answer']));
+        event(new ExpertAnalysisReceived($validation['submission'], $expert, $validation['answer']));
 
         // return NULL and handle response to expert and enthusiast on event
         return NULL;
@@ -66,12 +67,12 @@ class ExpertTextProcessor {
                 'message' => "Please respond in the format: \"12345 Yes\", where 12345 is the number you received with the photo."
             ];
         }
-        elseif (!$enthusiast = $this->userModel->find($text[0]))
+        elseif (!$submission = $this->submissionModel->find($text[0]))
         {
-            // enthusiast user not found from integer provided
+            // submission not found from integer provided
             return [
                 'valid' => FALSE,
-                'message' => "We couldn't find that reference number!"
+                'message' => "We couldn't find that photo reference number!"
             ];
         }
 
@@ -86,7 +87,7 @@ class ExpertTextProcessor {
 
         return [
             'valid' => TRUE,
-            'user' => $enthusiast,
+            'submission' => $submission,
             'answer' => strtolower($text[1])
         ];
     }

@@ -1,13 +1,14 @@
 <?php namespace App\LaraSqrrl\Texts\Events;
 
+use App\LaraSqrrl\Submissions\Submission;
 use App\LaraSqrrl\Users\User;
 
 class ExpertAnalysisReceived {
 
     /**
-     * @var User
+     * @var Submission
      */
-    private $enthusiast;
+    private $submission;
     /**
      * @var User
      */
@@ -15,25 +16,25 @@ class ExpertAnalysisReceived {
     private $analysis;
 
     /**
-     * @param User $enthusiast
+     * @param Submission $submission
      * @param User $expert
      * @param bool $analysis
      */
-    public function __construct(User $enthusiast,
+    public function __construct(Submission $submission,
                                 User $expert,
                                 $analysis)
     {
-        $this->enthusiast = $enthusiast;
+        $this->submission = $submission;
         $this->expert = $expert;
         $this->analysis = $analysis;
     }
 
     /**
-     * @return User
+     * @return Submission
      */
-    public function getEnthusiastUser()
+    public function getSubmission()
     {
-        return $this->enthusiast;
+        return $this->submission;
     }
 
     /**
