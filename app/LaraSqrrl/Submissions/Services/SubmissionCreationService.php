@@ -34,7 +34,7 @@ class SubmissionCreationService {
 
         // build path for photo
         $date = Carbon::now();
-        $path = '/user_submissions/' . $enthusiast->id . "/" . ($date->toDateString()) . '/' . ($date->format('His')) . $mediaType;
+        $path = '/user_submissions/' . $enthusiast->id . "/" . ($date->toDateString()) . '/' . ($date->format('His')) . '.' . $mediaType;
 
         // send photo to s3
         $s3 = Storage::disk('s3');
