@@ -26,6 +26,11 @@ class User extends Model
     {
         return $this->hasMany('App\LaraSqrrl\Submissions\Submission');
     }
+    public function response()
+    {
+        return $this->hasMany('App\LaraSqrrl\Responses\Response');
+    }
+
     /**
      * Find a user by their phone number.
      *
