@@ -1,6 +1,6 @@
 <?php namespace App\LaraSqrrl\Responses\Services;
 
-use app\LaraSqrrl\Responses\Response;
+use App\LaraSqrrl\Responses\Response;
 use App\LaraSqrrl\Submissions\Submission;
 use App\LaraSqrrl\Users\User;
 

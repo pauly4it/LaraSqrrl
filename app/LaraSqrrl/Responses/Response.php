@@ -1,4 +1,4 @@
-<?php namespace app\LaraSqrrl\Responses;
+<?php namespace App\LaraSqrrl\Responses;
 
 use Illuminate\Database\Eloquent\Model;
 
