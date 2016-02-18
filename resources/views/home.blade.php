@@ -56,7 +56,7 @@
                 <div class="title">LaraSqrrl</div>
                 <div class="tagline">The best squirrel tracker. EVER.</div>
                 <div class="hook">Ready to start?</div>
-                <div class="join">Text "Join" to +1-678-64-SQRRL (77775)</div>
+                <div class="join">Text "Join" to +1-555-55-SQRRL</div>
             </div>
         </div>
     </body>

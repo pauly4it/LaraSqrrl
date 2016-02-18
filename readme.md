@@ -1,6 +1,6 @@
 # LaraSqrrl
 
-Identify and track squirrels via text. Created for the November 10th Laravel SF Meetup.
+Identify and track squirrels via text. Created for the November 10th and February 9th Laravel SF Meetups.
 
 ## Local Install
 
