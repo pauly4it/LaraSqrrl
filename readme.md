@@ -1,6 +1,6 @@
 # LaraSqrrl
 
-Identify and track squirrels via text. Created for the November 10th and February 9th Laravel SF Meetups.
+Identify and track squirrels via text, now using AWS Rekognition! Created for the November 10th, 2015; February 9th, 2016; May 10th, 2016; and March 13th, 2018 Laravel SF Meetups.
 
 ## Local Install
 
