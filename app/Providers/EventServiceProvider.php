@@ -12,7 +12,7 @@ class EventServiceProvider extends ServiceProvider {
      */
     protected $listen = [
         'App\LaraSqrrl\Texts\Events\EnthusiastPictureReceived' => [
-            'App\LaraSqrrl\Texts\Handlers\SendPictureToExperts',
+            'App\LaraSqrrl\Texts\Handlers\SendPictureToRekognition',
         ],
 
         'App\LaraSqrrl\Texts\Events\ExpertAnalysisReceived' => [

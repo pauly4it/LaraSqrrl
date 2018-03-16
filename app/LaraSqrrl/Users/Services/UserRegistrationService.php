@@ -52,40 +52,15 @@ class UserRegistrationService {
                 {
                     // valid name provided
                     $user->name = $name;
+                    $user->role = 'enthusiast';
                     $user->save();
 
-                    return "Nice to meet you " . $user->name . "! Last question: Are you a squirrel expert or an enthusiast? Reply with \"Expert\" or \"Enthusiast\".";
+                    return "Nice to meet you " . $user->name . "! Whenever you're not sure if you're looking at a squirrel, just text us a photo. Our squirrel identification system will help you out!";
                 }
                 else
                 {
-                    // invalid name provded
+                    // invalid name provided
                     return "Whoah, we didn't recognize that name. Names can only include letters, numbers, apostrophes, dashes, and spaces. Please try sending your name again.";
-                }
-
-            case 2:
-                // user already has name saved, now need to check the role the user sent
-                $role = strtolower($incomingText->getBody());
-                $validate = $user->validateRole(['role' => $role]);
-                if ($validate)
-                {
-                    // valid role
-                    $user->role = $role;
-                    $user->save();
-
-                    // determine response based on role
-                    switch ($role)
-                    {
-                        case 'expert':
-                            return "You're all set as a squirrel expert! Whenever an enthusiast sends in a photo, you'll receive that photo to analyze.";
-                            break;
-
-                        case 'enthusiast':
-                            return "You're all set as a squirrel enthusiast! Whenever you're not sure if you're looking at a squirrel, just text us a photo. Our squirrel experts will help you out!";
-                            break;
-                        default:
-                            return "We didn't understand that. Reply with either \"Expert\" or \"Enthusiast\".";
-                            break;
-                    }
                 }
                 break;
         }

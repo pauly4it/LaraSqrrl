@@ -44,13 +44,13 @@ class SubmissionCreationService {
         $photo_url = 'https://s3.amazonaws.com/' . config('filesystems.disks.s3.bucket') . $path;
 
         // save submission
-        $submission = $this->submission->create([
+        $this->submission->create([
             'user_id' => $enthusiast->id,
             'photo_url' => $photo_url
         ]);
 
-        // return saved submission
-        return $submission;
+        // return saved photo name
+        return substr($path, 1);
     }
 
 }

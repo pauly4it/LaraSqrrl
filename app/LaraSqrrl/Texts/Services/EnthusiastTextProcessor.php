@@ -20,14 +20,14 @@ class EnthusiastTextProcessor {
         if ($incomingText->getNumMedia() < 1)
         {
             // no picture received
-            return "We're not sure what you're trying to do! All you need to do is send us a photo of a potential squirrel to receive an answer from a qualified squirrel expert.";
+            return "We're not sure what you're trying to do! All you need to do is send us a photo of a potential squirrel to receive an answer from our squirrel identification system.";
         }
 
         // a picture has been receive, fire event
         event(new EnthusiastPictureReceived($incomingText, $user));
 
         // let user know their potential squirrel photo is in good hands
-        return "You're photo is on its way to our world-renowned squirrel experts for analysis!";
+        return "We're analyzing your photo now! Just a few moments of suspense, and then you'll have your answer.";
     }
 
 }
