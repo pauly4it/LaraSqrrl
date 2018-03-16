@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "twilio/sdk": "4.5",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "aws/aws-sdk-php": "~3.0"
+        "aws/aws-sdk-php": "~3.52",
+        "larareko/aws-rekognition": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
